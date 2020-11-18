@@ -46,6 +46,11 @@ public class CompaniesController {
 	public ResponseEntity<?> insert(@RequestBody String data) throws JsonProcessingException {
 		Companies companies = new Companies();
 		String respon = "";
+//		System.out.println(data);
+//		String x = "{ \"name\" : \"pt anu\", \"code\" : \"anu\"}";
+//		Companies c = new Companies();
+//		c = new ObjectMapper().readValue(x, Companies.class);
+//		System.out.println(c);
 		try {
 			companies = new ObjectMapper().readValue(data, Companies.class);
 			companies = companiesService.insert(companies);

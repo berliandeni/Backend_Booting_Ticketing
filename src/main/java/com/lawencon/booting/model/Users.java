@@ -17,9 +17,9 @@ public class Users extends BaseModel{
 	@Column(nullable = false, unique = true)
 	private String nip;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_photo_profile")
-//	private PhotoProfile idPhoto;
+	@ManyToOne
+	@JoinColumn(name = "id_photo_profile")
+	private PhotoProfile idPhoto;
 
 	@ManyToOne
 	@JoinColumn(name = "id_company")
@@ -69,12 +69,12 @@ public class Users extends BaseModel{
 	public void setName(String name) {
 		this.name = name;
 	}
-//	public PhotoProfile getIdPhoto() {
-//		return idPhoto;
-//	}
-//	public void setIdPhoto(PhotoProfile idPhoto) {
-//		this.idPhoto = idPhoto;
-//	}
+	public PhotoProfile getIdPhoto() {
+		return idPhoto;
+	}
+	public void setIdPhoto(PhotoProfile idPhoto) {
+		this.idPhoto = idPhoto;
+	}
 	
 	
 }

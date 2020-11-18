@@ -70,7 +70,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		return ticket;
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@Override
 	public List<TicketCharts> getListTicketCharts(Long data) throws Exception {
 		StringBuilder sql = new StringBuilder();
@@ -125,10 +125,11 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("and (extract (year from trht.created_at ) = :year) ) as December ");
 		sql.append("FROM tb_m_status tms ORDER BY tms.name");
 
-		List<Object[]> listData = em.createNativeQuery(sql.toString()).setParameter("year", data).getResultList();
+		List<?> listData = em.createNativeQuery(sql.toString()).setParameter("year", data).getResultList();
 		List<TicketCharts> listCharts = new ArrayList<>();
 
-		listData.forEach(l -> {
+		listData.forEach(obj -> {
+			Object[] l = (Object[]) obj;
 			TicketCharts ticket = new TicketCharts();
 			ticket.setName((String) l[0]);
 			ticket.setJanuary((BigInteger) l[1]);
@@ -209,7 +210,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		return !listData.isEmpty() ? listData.get(0) : null;
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@Override
 	public List<TicketCharts> getChartsByClient(Companies data) throws Exception {
 		StringBuilder sql = new StringBuilder();
@@ -221,7 +222,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 1 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as January ,  ");
+		sql.append("and com.code = :company ) as January, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -229,7 +230,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 2 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as February ,  ");
+		sql.append("and com.code = :company ) as February, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -237,7 +238,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 3 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as March, ");
+		sql.append("and com.code = :company ) as March, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -245,7 +246,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 4 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as April, ");
+		sql.append("and com.code = :company ) as April, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -253,7 +254,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 5 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as May, ");
+		sql.append("and com.code = :company ) as May, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -261,7 +262,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 6 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as June , ");
+		sql.append("and com.code = :company ) as June, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -269,7 +270,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 7 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as July, ");
+		sql.append("and com.code = :company ) as July, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -277,7 +278,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 8 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as August,  ");
+		sql.append("and com.code = :company ) as August, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -285,7 +286,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 9 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as September,  ");
+		sql.append("and com.code = :company ) as September, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -293,7 +294,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 10 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as October,  ");
+		sql.append("and com.code = :company ) as October, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -301,7 +302,7 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 11 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as November,  ");
+		sql.append("and com.code = :company ) as November, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
 		sql.append("join tb_m_users usr on usr.id = trht.id_customer ");
 		sql.append("join tb_m_companies com on com.id  = usr.id_company ");
@@ -309,14 +310,15 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("where extract (month from trht.created_at ) = 12 ");
 		sql.append("and tms.id = tms2.id ");
 		sql.append("and extract (year from trht.created_at ) = date_part('year', current_timestamp) ");
-		sql.append("and com.name = :company ) as December ");
+		sql.append("and com.code = :company ) as December ");
 		sql.append("FROM tb_m_status tms ORDER BY tms.name");
 
-		List<Object[]> listData = em.createNativeQuery(sql.toString()).setParameter("company", data.getName())
+		List<?> listData = em.createNativeQuery(sql.toString()).setParameter("company", data.getCode())
 				.getResultList();
 		List<TicketCharts> listCharts = new ArrayList<>();
 
-		listData.forEach(l -> {
+		listData.forEach(obj -> {
+			Object[] l = (Object[]) obj;
 			TicketCharts ticket = new TicketCharts();
 			ticket.setName((String) l[0]);
 			ticket.setJanuary((BigInteger) l[1]);
@@ -336,9 +338,9 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		return listCharts;
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@Override
-	public List<TicketCharts> getChartsByAgent(List<String> data) throws Exception {
+	public List<?> getChartsByAgent(List<String> data) throws Exception {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT tms.name, ");
 		sql.append("(select count(trht.id) from tb_r_hdr_tickets trht ");
@@ -439,10 +441,12 @@ public class TicketsDaoImpl extends BaseDao implements TicketsDao {
 		sql.append("and com.id IN (:id) ) as December ");
 		sql.append("FROM tb_m_status tms ORDER BY tms.name");
 
-		List<Object[]> listData = em.createNativeQuery(sql.toString(), Object[].class).setParameter("id", data).getResultList();
+		List<?> listData = em.createNativeQuery(sql.toString())
+				.setParameter("id", data).getResultList();
 		List<TicketCharts> listCharts = new ArrayList<>();
 
-		listData.forEach(l -> {
+		listData.forEach(obj -> {
+			Object[] l = (Object[]) obj;
 			TicketCharts ticket = new TicketCharts();
 			ticket.setName((String) l[0]);
 			ticket.setJanuary((BigInteger) l[1]);

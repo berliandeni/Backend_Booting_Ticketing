@@ -85,6 +85,8 @@ public class TicketController {
 		TicketHeader ticketHeader = new TicketHeader();
 		try {
 			ticketHeader = ticketsService.getTicket(ticket);
+			String a = new ObjectMapper().writeValueAsString(ticketHeader);
+			System.out.println(a);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(ticketHeader, HttpStatus.BAD_REQUEST);
@@ -175,7 +177,7 @@ public class TicketController {
 
 	@GetMapping("/charts/agent/{nip}")
 	public ResponseEntity<?> getChartsByAgent(@PathVariable("nip") String nip) {
-		List<TicketCharts> listData = new ArrayList<>();
+		List<?> listData = new ArrayList<>();
 		Users user = new Users();
 		user.setNip(nip);
 		try {

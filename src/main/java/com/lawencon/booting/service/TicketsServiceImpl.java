@@ -254,7 +254,7 @@ public class TicketsServiceImpl extends BaseService implements TicketsService {
 	}
 
 	@Override
-	public List<TicketCharts> getChartsByAgent(Users data) throws Exception {
+	public List<?> getChartsByAgent(Users data) throws Exception {
 		data = usersService.getUserByNip(data);
 		if (data == null) {
 			return null;

@@ -39,6 +39,6 @@ public interface TicketsDao {
 	
 	List<TicketCharts> getChartsByClient(Companies data) throws Exception;
 	
-	List<TicketCharts> getChartsByAgent(List<String> data) throws Exception;
+	List<?> getChartsByAgent(List<String> data) throws Exception;
 	
 }

@@ -42,7 +42,7 @@ public interface TicketsService {
 	
 	List<TicketCharts> getChartsByClient(Companies data) throws Exception;
 	
-	List<TicketCharts> getChartsByAgent(Users data) throws Exception;
+	List<?> getChartsByAgent(Users data) throws Exception;
 	
 	List<?> getListRelations(String data) throws Exception;
 }

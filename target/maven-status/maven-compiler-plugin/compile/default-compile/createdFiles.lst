@@ -15,7 +15,6 @@ com\lawencon\booting\dao\UsersDaoImpl.class
 com\lawencon\booting\controller\TemplateEmailController.class
 com\lawencon\booting\dao\ProductsDao.class
 com\lawencon\booting\model\AgentRelations.class
-com\lawencon\booting\constant\Status.class
 com\lawencon\booting\service\AgentRelationsService.class
 com\lawencon\booting\Application.class
 com\lawencon\booting\model\ClientProducts.class
@@ -29,7 +28,6 @@ com\lawencon\booting\model\Classifications.class
 com\lawencon\booting\model\LoginHelper.class
 com\lawencon\booting\model\TicketHeader.class
 com\lawencon\booting\dao\ClassificationsDao.class
-com\lawencon\booting\model\TicketHelper.class
 com\lawencon\booting\service\StatusServiceImpl.class
 com\lawencon\booting\controller\ClientProductsController.class
 com\lawencon\booting\dao\BaseDao.class
@@ -75,7 +73,6 @@ com\lawencon\booting\controller\ReportController.class
 com\lawencon\booting\service\CompaniesServiceImpl.class
 com\lawencon\booting\model\Users.class
 com\lawencon\booting\model\Accounts.class
-com\lawencon\booting\model\Attachments.class
 com\lawencon\booting\security\AuthenticationFilter.class
 com\lawencon\booting\utility\ResponseFile.class
 com\lawencon\booting\utility\JasperReportService.class
@@ -89,6 +86,7 @@ com\lawencon\booting\model\Tickets.class
 com\lawencon\booting\dao\PhotoProfileDaoImpl.class
 com\lawencon\booting\service\ReportService.class
 com\lawencon\booting\service\AccountsServiceImpl.class
+com\lawencon\booting\service\BaseService.class
 com\lawencon\booting\dao\StatusDaoImpl.class
 com\lawencon\booting\service\ClassificationsService.class
 com\lawencon\booting\service\PhotoProfileServiceImpl.class
@@ -109,4 +107,3 @@ com\lawencon\booting\service\RolesServiceImpl.class
 com\lawencon\booting\dao\StatusDao.class
 com\lawencon\booting\security\AutorizationFilter.class
 com\lawencon\booting\service\StatusService.class
-com\lawencon\booting\model\TicketPriority.class

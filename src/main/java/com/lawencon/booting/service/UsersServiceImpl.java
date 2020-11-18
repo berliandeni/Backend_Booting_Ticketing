@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lawencon.booting.dao.UsersDao;
 import com.lawencon.booting.model.Accounts;
+import com.lawencon.booting.model.PhotoProfile;
 import com.lawencon.booting.model.TemplateEmail;
 import com.lawencon.booting.model.Users;
 import com.lawencon.booting.utility.Mail;
@@ -30,8 +31,8 @@ public class UsersServiceImpl extends BaseService implements UsersService {
 //	@Autowired
 //	private CompaniesService companiesService;
 
-//	@Autowired
-//	private PhotoProfileService photoProfileService;
+	@Autowired
+	private PhotoProfileService photoProfileService;
 
 	@Autowired
 	private Mail mail;
@@ -59,11 +60,11 @@ public class UsersServiceImpl extends BaseService implements UsersService {
 //		roles = rolesService.getRolesByCode(data.getIdRole());
 		acc.setIdUser(data);
 		acc = accountsService.findByUser(acc);
-//		if(file != null) {
-//			PhotoProfile photo = new PhotoProfile();
-//			photo = photoProfileService.store(file);
-//			data.setIdPhoto(photo);
-//		}
+		if(file != null) {
+			PhotoProfile photo = new PhotoProfile();
+			photo = photoProfileService.store(file);
+			data.setIdPhoto(photo);
+		}
 //		data.setId(us.getId());
 //		data.setIdCompany(us.getIdCompany());
 //		data.setIdRole(us.getIdRole());
